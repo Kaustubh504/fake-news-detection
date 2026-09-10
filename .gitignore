@@ -1,0 +1,34 @@
+# ---- Data: never commit. See data/README.md for how to obtain it. ----
+data/*
+!data/README.md
+!data/.gitkeep
+*.pkl
+*.parquet
+*.feather
+*.zip
+
+# ---- Fitted models / vectorisers (regenerable, and large) ----
+artifacts/*.joblib
+artifacts/*.pkl
+artifacts/*.npz
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Notes ----
+# artifacts/splits.json IS committed on purpose: every approach must use
+# byte-identical splits, or the comparison between them is meaningless.
+# results/*.csv are committed so run history is preserved.
