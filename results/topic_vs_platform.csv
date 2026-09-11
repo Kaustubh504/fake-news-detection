@@ -1,0 +1,17 @@
+platform,topic,n_train,n_test,pct_fake,specialist,matched,gain
+snope,Business,385,85,77.9,0.5005,0.5248,-0.0243
+snope,Conflict,738,147,61.8,0.4947,0.5385,-0.0437
+snope,Entertainment,944,202,62.0,0.6117,0.5472,0.0645
+snope,Health,262,65,69.5,0.6154,0.4415,0.1739
+snope,Politics,1711,342,67.2,0.5893,0.5637,0.0256
+snope,Society,1255,271,72.3,0.6282,0.5952,0.033
+reddit,Entertainment,1070,215,80.2,0.8414,0.8554,-0.014
+reddit,Politics,783,197,69.7,0.9406,0.8814,0.0592
+reddit,Society,803,176,78.7,0.8658,0.827,0.0388
+cnn,Entertainment,343,79,2.6,0.4803,0.4732,0.0071
+cnn,Politics,632,139,12.8,0.4591,0.4558,0.0034
+cnn,Society,281,62,10.7,0.4746,0.4746,0.0
+washingtonpost,Politics,347,79,38.9,0.6196,0.5247,0.0949
+twitter,Politics,237,51,58.2,0.5588,0.4836,0.0752
+twitter,Society,203,39,70.0,0.5764,0.4681,0.1083
+apnews,Politics,246,43,10.6,0.4625,0.4625,0.0

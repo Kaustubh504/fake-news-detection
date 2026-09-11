@@ -71,6 +71,7 @@ def find_data_dir() -> Path:
 def load_finefake(
     path: Path | None = None,
     min_words: int | None = None,
+    truncate_words: int | None = None,
     drop_uncategorized: bool = False,
 ) -> pd.DataFrame:
     """Load FineFake and normalise it to SCHEMA.
@@ -86,6 +87,14 @@ def load_finefake(
         If given, drop rows with fewer than this many whitespace-separated
         tokens. Default None — nothing is filtered. See the module docstring
         before choosing a value; filtering to 100 keeps only ~24% of rows.
+    truncate_words
+        If given, cut every document to its first N whitespace tokens.
+        Combined with min_words=N this makes every document EXACTLY N words,
+        which removes document length as a predictive feature by
+        construction. See the length confound in the module docstring: on the
+        raw corpus, log(word count) alone reaches macro-F1 0.72, so any
+        result obtained without controlling for it is largely measuring
+        length rather than deception.
     drop_uncategorized
         FineFake has a 7th "Uncategorized" topic with 113 rows, too few to
         train a specialist on. Set True to exclude it.
@@ -138,6 +147,11 @@ def load_finefake(
         df = df[df["topic"] != "Uncategorized"]
     if min_words is not None:
         df = df[df["n_words"] >= min_words]
+
+    if truncate_words is not None:
+        df = df.copy()
+        df["text"] = df["text"].str.split().str[:truncate_words].str.join(" ")
+        df["n_words"] = df["text"].str.split().str.len().astype(int)
 
     df["label"] = df["label"].astype(int)
     return df.reset_index(drop=True)[SCHEMA]
