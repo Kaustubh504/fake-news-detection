@@ -1,0 +1,3 @@
+scope,n_queries,neighbour_topic_match,neighbour_label_agreement,mean_similarity,cluster_purity,nmi,homogeneity,k
+cluster,2322,0.3685,0.675,0.6679,0.3759578986243191,0.0563,0.0644,11
+global,2322,0.3723,0.6735,0.6929,0.3759578986243191,0.0563,0.0644,11
