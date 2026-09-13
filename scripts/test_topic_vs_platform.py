@@ -129,21 +129,29 @@ def main() -> None:
 
     overall = res["gain"].mean()
     wins = int((res["gain"] > 0).sum())
+    frac = wins / len(res)
     print(f"\nOVERALL mean within-platform topic gain = {overall:+.4f}")
-    print(f"positive in {wins}/{len(res)} cells")
-    print("\ncompare: ACROSS platforms (Approach A) the same test gave +0.0329")
+    print(f"positive in {wins}/{len(res)} cells ({100*frac:.0f}%)")
     print()
-    if overall > 0.01 and wins > len(res) / 2:
-        print("READ: topic specialisation survives with platform held constant.")
-        print("      The effect is genuinely about topic. Premise confirmed.")
+    if overall > 0.02 and frac >= 0.75:
+        print("READ: topic specialisation clearly survives with platform held")
+        print("      constant. The effect is genuinely about topic.")
+    elif overall > 0.005 and frac > 0.5:
+        print("READ: a small positive effect survives, but it is weak and")
+        print("      inconsistent - a majority of cells gain, not all. Report")
+        print("      the magnitude and the win rate together; quoting the mean")
+        print("      alone would overstate how reliable this is.")
     elif overall <= 0.005:
         print("READ: the gain largely DISAPPEARS once platform is held constant.")
         print("      What looked like topic specialisation was mostly the model")
         print("      learning each outlet's base rate. Report this - it is a")
         print("      finding about the corpus, not a failure of the method.")
     else:
-        print("READ: partial. Some topic effect remains but it is much smaller")
-        print("      than the across-platform number suggested.")
+        print("READ: mixed. Some topic effect remains but it is not consistent")
+        print("      across cells; treat it as suggestive only.")
+    print("\nNOTE: cells from platforms below ~15% fake (cnn, apnews) sit near")
+    print("      macro-F1 0.46-0.50 - too class-skewed for any model to learn")
+    print("      from, so their ~0 gains say little either way.")
 
     out = REPO / "results" / "topic_vs_platform.csv"
     res.to_csv(out, index=False)

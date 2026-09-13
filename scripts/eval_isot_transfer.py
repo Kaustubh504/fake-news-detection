@@ -79,9 +79,13 @@ def main():
     print(pd.Series(cluster).value_counts().sort_index().to_string())
 
     # ---- persist a small transfer results file ----
+    # n_train is the number of FineFake TRAINING ROWS these models saw.
+    # (Previously passed fallback_clf.n_features_in_, which is the feature
+    # count - 100,000 - not a row count.)
+    n_train = len(splits.load_splits()["train"])
     rows = [
-        M.result_row("D", "baseline_transfer_isot", "isot", SEED, fallback_clf.n_features_in_, len(isot), base),
-        M.result_row("D", "clustered_routed_transfer_isot", "isot", SEED, fallback_clf.n_features_in_, len(isot), routed),
+        M.result_row("D", "baseline_transfer_isot", "isot", SEED, n_train, len(isot), base),
+        M.result_row("D", "clustered_routed_transfer_isot", "isot", SEED, n_train, len(isot), routed),
     ]
     out = Path(__file__).resolve().parents[1] / "results" / "isot_transfer.csv"
     pd.DataFrame(rows).to_csv(out, index=False)

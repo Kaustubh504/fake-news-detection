@@ -24,6 +24,13 @@ result that looks too good as suspect until length is ruled out.
 
 Only ~24% of rows reach 100 words. `min_words` is available but defaults to
 None so that nothing is filtered silently.
+
+DUPLICATES
+----------
+The raw corpus has 2,362 exactly duplicated rows, over half of all Reddit
+content. Loading without deduplication leaks 12.5% of the test split into
+training and inflates every score. `deduplicate=True` is therefore the
+default - see the parameter docs below.
 """
 
 from __future__ import annotations
@@ -73,6 +80,7 @@ def load_finefake(
     min_words: int | None = None,
     truncate_words: int | None = None,
     drop_uncategorized: bool = False,
+    deduplicate: bool = True,
 ) -> pd.DataFrame:
     """Load FineFake and normalise it to SCHEMA.
 
@@ -98,6 +106,17 @@ def load_finefake(
     drop_uncategorized
         FineFake has a 7th "Uncategorized" topic with 113 rows, too few to
         train a specialist on. Set True to exclude it.
+    deduplicate
+        Default True, and it matters. FineFake contains 2,362 exactly
+        duplicated rows (52.9% of all Reddit rows). Left in, 12.5% of the
+        test split has text that also appears in training, and the model
+        scores macro-F1 0.93 on those memorised rows against 0.75 on unseen
+        ones - inflating every headline number.
+
+        Rows whose text carries BOTH labels (22 groups) are dropped
+        entirely, since neither label can be trusted; remaining repeats keep
+        their first occurrence. Set False only to reproduce the inflated
+        pre-deduplication numbers.
 
     Returns
     -------
@@ -142,6 +161,14 @@ def load_finefake(
     df = df[[c for c in SCHEMA if c in df.columns]].copy()
     df["text"] = df["text"].fillna("").astype(str)
     df = df[df["text"].str.strip() != ""]
+
+    if deduplicate:
+        key = df["text"].str.strip().str.lower()
+        # Same text with BOTH labels means neither can be trusted - drop all.
+        conflicted = df.groupby(key)["label"].transform("nunique") > 1
+        df = df[~conflicted]
+        # Then keep one copy of each remaining repeated text.
+        df = df[~df["text"].str.strip().str.lower().duplicated(keep="first")]
 
     if drop_uncategorized:
         df = df[df["topic"] != "Uncategorized"]
