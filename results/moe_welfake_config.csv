@@ -1,0 +1,2 @@
+dataset,k,gate_T,blend_alpha,threshold,global_family,experts
+welfake,10,0.02,0.6,0.5,svc,"{0: 'sgd', 1: 'sgd', 2: 'sgd', 3: 'sgd', 4: 'svc', 5: 'sgd', 6: 'sgd', 7: 'sgd', 8: 'sgd', 9: 'sgd'}"

@@ -1,0 +1,8 @@
+dataset,system,macro_f1,accuracy,precision,recall,roc_auc,mcc,fake_FNR,fake_FPR
+finefake,S0 global baseline (best=logreg),0.7657,0.7679,0.7593,0.8194,0.833,0.5341,0.1806,0.2896
+finefake,"S1 hard routing, LogReg experts (Approach 2)",0.7494,0.7511,0.7508,0.79,0.8349,0.4999,0.21,0.2923
+finefake,"S2 hard routing, best-family experts",0.7494,0.7511,0.7508,0.79,0.8349,0.4999,0.21,0.2923
+finefake,S3 soft-gated MoE (no global blend),0.762,0.7649,0.7507,0.8292,0.8391,0.5288,0.1708,0.3069
+finefake,"S4 soft MoE + global blend (k=4, T=0.25, a=0.6)",0.7665,0.7692,0.7556,0.8309,0.8388,0.5373,0.1691,0.2996
+finefake,S5 stacked meta-learner,0.7647,0.767,0.757,0.8219,0.8386,0.5326,0.1781,0.2942
+finefake,S6 CONTROL global ensemble (no clustering),0.76,0.7631,0.7471,0.8325,0.8343,0.5256,0.1675,0.3142

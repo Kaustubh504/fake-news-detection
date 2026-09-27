@@ -1,0 +1,19 @@
+train_on,condition,test_on,n_test,macro_f1,dropped_as_contaminated
+FineFake,raw,FineFake (in-dist),2322,0.7672,
+FineFake,raw,WELFake,63663,0.445,13.0
+FineFake,raw,ISOT,39103,0.4215,0.0
+FineFake,length-de-biased,FineFake (in-dist),1299,0.6535,
+FineFake,length-de-biased,WELFake,63676,0.6644,0.0
+FineFake,length-de-biased,ISOT,39103,0.6947,0.0
+WELFake,raw,WELFake (in-dist),9552,0.9598,
+WELFake,raw,FineFake,15473,0.6105,1.0
+WELFake,raw,ISOT,11693,0.9843,27410.0
+WELFake,length-de-biased,WELFake (in-dist),8111,0.9571,
+WELFake,length-de-biased,FineFake,15473,0.6047,1.0
+WELFake,length-de-biased,ISOT,14828,0.9833,24275.0
+ISOT,raw,ISOT (in-dist),5866,0.9894,
+ISOT,raw,FineFake,15474,0.5183,0.0
+ISOT,raw,WELFake,36194,0.7084,27482.0
+ISOT,length-de-biased,ISOT (in-dist),4771,0.9887,
+ISOT,length-de-biased,FineFake,15474,0.514,0.0
+ISOT,length-de-biased,WELFake,41290,0.7494,22386.0

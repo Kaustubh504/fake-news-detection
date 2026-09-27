@@ -1,0 +1,16 @@
+dataset,variant,n_rows,full_macro_f1,drop_vs_raw,length_probe_f1
+FineFake,raw (no intervention),15474,0.7672,0.0,0.7065
+FineFake,length-controlled (exactly 20 words),8410,0.6546,-0.1125,0.2629
+FineFake,length-stratified rebalance,8658,0.6535,-0.1136,0.4475
+FineFake,source/boilerplate masked,15460,0.7412,-0.0259,0.7027
+FineFake,masked + length-stratified,8648,0.6301,-0.1371,0.4882
+WELFake,raw (no intervention),63676,0.9591,0.0,0.5413
+WELFake,length-controlled (exactly 357 words),38290,0.9267,-0.0324,0.3649
+WELFake,length-stratified rebalance,54070,0.9551,-0.004,0.4919
+WELFake,source/boilerplate masked,63671,0.946,-0.0131,0.5449
+WELFake,masked + length-stratified,53806,0.9468,-0.0122,0.4855
+ISOT,raw (no intervention),39103,0.9894,0.0,0.5416
+ISOT,length-controlled (exactly 332 words),23471,0.9849,-0.0044,0.3328
+ISOT,length-stratified rebalance,31804,0.9887,-0.0007,0.4982
+ISOT,source/boilerplate masked,39098,0.9852,-0.0041,0.557
+ISOT,masked + length-stratified,31880,0.9837,-0.0057,0.4857

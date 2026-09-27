@@ -1,0 +1,4 @@
+dataset_a,dataset_b,n_a,n_b,shared_texts,pct_of_a,pct_of_b
+FineFake,WELFake,15474,63676,1,0.01,0.0
+FineFake,ISOT,15474,39103,0,0.0,0.0
+ISOT,WELFake,39103,63676,38831,99.3,60.98

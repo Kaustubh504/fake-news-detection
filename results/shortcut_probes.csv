@@ -1,0 +1,23 @@
+dataset,probe,macro_f1,share_of_gap
+FineFake,length only (log word count),0.7065,0.764
+FineFake,caps ratio only,0.5652,0.2148
+FineFake,punctuation only,0.485,-0.0973
+FineFake,stopword ratio only,0.6388,0.5011
+FineFake,ALL cheap cues combined,0.7064,0.7637
+FineFake,source/platform identity only,0.7025,0.7486
+FineFake,FULL text model (reference),0.7672,1.0
+FineFake,no-information floor,0.51,0.0
+WELFake,length only (log word count),0.5413,0.0952
+WELFake,caps ratio only,0.6187,0.2628
+WELFake,punctuation only,0.7388,0.523
+WELFake,stopword ratio only,0.5783,0.1754
+WELFake,ALL cheap cues combined,0.8035,0.663
+WELFake,FULL text model (reference),0.9591,1.0
+WELFake,no-information floor,0.4973,0.0
+ISOT,length only (log word count),0.5416,0.0831
+ISOT,caps ratio only,0.6069,0.2167
+ISOT,punctuation only,0.8166,0.6463
+ISOT,stopword ratio only,0.6742,0.3546
+ISOT,ALL cheap cues combined,0.9082,0.8338
+ISOT,FULL text model (reference),0.9894,1.0
+ISOT,no-information floor,0.5011,0.0

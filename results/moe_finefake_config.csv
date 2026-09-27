@@ -1,0 +1,2 @@
+dataset,k,gate_T,blend_alpha,threshold,global_family,experts
+finefake,4,0.25,0.6,0.49,logreg,"{0: 'logreg', 1: 'logreg', 2: 'logreg', 3: 'logreg'}"
